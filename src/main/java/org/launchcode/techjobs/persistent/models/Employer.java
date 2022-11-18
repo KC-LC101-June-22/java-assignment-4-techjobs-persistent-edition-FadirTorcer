@@ -11,6 +11,9 @@ public class Employer extends AbstractEntity {
     @Size(max = 128)
     private String location;
 
+    public Employer() {
+    }
+
     public String getLocation() {
         return location;
     }
