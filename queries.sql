@@ -12,3 +12,5 @@ select name from employer where location = "St. Louis City";
 drop table job;
 
 -- Part 4: Test it with SQL
+select distinct skill.name from skill, job_skills where skill.id = job_skills.skills_id order by skill.name;
+-- return the names of all skills that are attached to jobs in alphabetical order.
