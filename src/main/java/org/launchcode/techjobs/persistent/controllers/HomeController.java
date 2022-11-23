@@ -60,7 +60,7 @@ public class HomeController {
         Optional<Employer> optEmployer = employerRepository.findById(employerId);
         //Optional<List<Skill>> optionalSkills = skillRepository.findAllById(skills);
         if (optEmployer.isPresent()) {
-            Employer employer = (Employer) optEmployer.get();
+            Employer employer = optEmployer.get();
             newJob.setEmployer(employer);
             List<Skill> jobSkills = (List<Skill>) skillRepository.findAllById(skills);
             newJob.setSkills(jobSkills);
@@ -73,7 +73,7 @@ public class HomeController {
     public String displayViewJob(Model model, @PathVariable int jobId) {
         Optional<Job> optJob = jobRepository.findById(jobId);
         if (optJob.isPresent()) {
-            Job job = (Job) optJob.get();
+            Job job = optJob.get();
             model.addAttribute("job", job);
         }
         return "view";
