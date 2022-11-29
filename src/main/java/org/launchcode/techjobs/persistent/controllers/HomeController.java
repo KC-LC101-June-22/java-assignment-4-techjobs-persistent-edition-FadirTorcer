@@ -62,7 +62,7 @@ public class HomeController {
         if (optEmployer.isPresent()) {
             Employer employer = optEmployer.get();
             newJob.setEmployer(employer);
-            List<Skill> jobSkills = (List<Skill>) skillRepository.findAllById(skills);
+            List<Skill> jobSkills = (List<Skill>) skillRepository.findAllById(skills); // is this the line for my error?
             newJob.setSkills(jobSkills);
             jobRepository.save(newJob);
         }
