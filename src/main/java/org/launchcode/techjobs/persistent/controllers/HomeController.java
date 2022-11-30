@@ -35,7 +35,7 @@ public class HomeController {
     public String index(Model model) {
 
         model.addAttribute("title", "My Jobs");
-
+        model.addAttribute("jobs", jobRepository.findAll());
         return "index";
     }
 
@@ -57,15 +57,15 @@ public class HomeController {
             model.addAttribute("title", "Add Job");
             return "add";
         }
+
         Optional<Employer> optEmployer = employerRepository.findById(employerId);
-        //Optional<List<Skill>> optionalSkills = skillRepository.findAllById(skills);
+        List<Skill> jobSkills = (List<Skill>) skillRepository.findAllById(skills);
+        newJob.setSkills(jobSkills);
         if (optEmployer.isPresent()) {
             Employer employer = optEmployer.get();
             newJob.setEmployer(employer);
-            List<Skill> jobSkills = (List<Skill>) skillRepository.findAllById(skills); // is this the line for my error?
-            newJob.setSkills(jobSkills);
-            jobRepository.save(newJob);
         }
+        jobRepository.save(newJob);
         return "redirect:";
     }
 
